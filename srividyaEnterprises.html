@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Vidya Enterprises | Premium UPVC Interiors</title>
+    
+    <!-- Elegant Typography: Playfair Display for headings, Outfit for clean modern text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    },
+                    colors: {
+                        brand: {
+                            gold: '#C5A059',
+                            goldLight: '#E8D5B5',
+                            dark: '#111827',
+                            text: '#4B5563',
+                            bg: '#FAFAFA'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { 
+            background-color: #FAFAFA; 
+            overflow-x: hidden; 
+        }
+
+        /* =======================================
+           ELEGANT ANIMATIONS
+           ======================================= */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.25, 1, 0.5, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* =======================================
+           FROSTED SLIDING DOORS (COLLECTIONS)
+           ======================================= */
+        .door-wrapper { position: relative; overflow: hidden; border-radius: 1.5rem; aspect-ratio: 4/3; }
+        
+        .door-left, .door-right {
+            position: absolute; width: 50%; height: 100%; top: 0; z-index: 10;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(250, 250, 250, 0.85);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.4);
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.03), 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        
+        .door-left { left: 0; border-right: 1px solid rgba(197, 160, 89, 0.3); transform-origin: left; }
+        .door-right { right: 0; border-left: 1px solid rgba(197, 160, 89, 0.3); transform-origin: right; }
+        
+        /* Elegant Gold Handles */
+        .door-left::after { content: ''; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 3px; height: 70px; background: #C5A059; border-radius: 4px; box-shadow: 1px 0 5px rgba(0,0,0,0.1); }
+        .door-right::after { content: ''; position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 3px; height: 70px; background: #C5A059; border-radius: 4px; box-shadow: -1px 0 5px rgba(0,0,0,0.1); }
+
+        .product-card:hover .door-left { transform: translateX(-100%); }
+        .product-card:hover .door-right { transform: translateX(100%); }
+        
+        .product-inner-img { transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1); transform: scale(1.1); }
+        .product-card:hover .product-inner-img { transform: scale(1); }
+
+    </style>
+</head>
+<body class="text-brand-text">
+
+    <!-- Soft Ambient Background Gradient -->
+    <div class="fixed top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-goldLight/20 via-transparent to-transparent -z-10 pointer-events-none"></div>
+
+    <!-- Classy Floating Navbar -->
+    <div class="fixed top-6 w-full z-50 flex justify-center px-4 pointer-events-none">
+        <nav class="pointer-events-auto bg-white/90 backdrop-blur-xl border border-gray-200/60 shadow-[0_8px_30px_rgba(0,0,0,0.04)] rounded-full px-6 py-3 flex items-center justify-between w-full max-w-6xl transition-all">
+            
+            <div class="flex items-center gap-3 cursor-pointer">
+                <div class="w-10 h-10 bg-brand-dark rounded-full flex items-center justify-center text-brand-gold font-serif italic font-bold text-lg">SV</div>
+                <span class="font-serif font-semibold text-brand-dark text-xl tracking-wide">Sri Vidya Enterprises</span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-brand-text">
+                <a href="#materials" class="hover:text-brand-gold transition-colors">The Standard</a>
+                <a href="#products" class="hover:text-brand-gold transition-colors">Collections</a>
+                <a href="#gallery" class="hover:text-brand-gold transition-colors">Gallery</a>
+                <a href="#contact" class="hover:text-brand-gold transition-colors">Contact Us</a>
+            </div>
+
+            <a href="#contact" class="hidden md:inline-flex px-6 py-2.5 text-sm font-semibold text-white bg-brand-dark rounded-full hover:bg-brand-gold transition-all shadow-md">
+                Request a Quote
+            </a>
+
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-brand-dark">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Elegant Hero Section -->
+    <section class="relative pt-40 pb-20 md:pt-48 md:pb-32 max-w-7xl mx-auto px-6 min-h-[90vh] flex items-center">
+        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 w-full">
+            
+            <!-- Left: Classy Typography -->
+            <div class="w-full lg:w-[50%] relative z-10 reveal visible">
+                <!-- Founder Badge -->
+                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-gray-200 bg-white shadow-sm text-xs font-semibold text-brand-dark mb-8 tracking-widest uppercase">
+                    <i class="fa-solid fa-gem text-brand-gold"></i> V. L. Narayana
+                </div>
+                
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-serif font-medium leading-[1.1] text-brand-dark mb-6">
+                    UPVC <br>
+                    <span class="italic text-brand-gold">Cupboards, Modular Kitchen and Wardrobes.</span>
+                </h1>
+                
+                <p class="text-lg text-brand-text leading-relaxed mb-10 max-w-md font-light">
+                    Transforming homes with elegant, highly durable UPVC doors, modular kitchens, and premium bespoke interiors.
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-5">
+                    <a href="#products" class="w-full sm:w-auto text-center px-8 py-4 text-sm font-medium text-white bg-brand-dark rounded-full hover:bg-brand-gold transition-all shadow-lg">
+                        View Collections
+                    </a>
+                    <a href="#gallery" class="w-full sm:w-auto text-center px-8 py-4 text-sm font-medium text-brand-dark bg-white border border-gray-200 rounded-full hover:border-brand-gold hover:text-brand-gold transition-all">
+                        Explore Gallery
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Right: Standard Image Display -->
+            <div class="w-full lg:w-[50%] relative mt-10 lg:mt-0">
+                <div class="relative bg-white p-3 shadow-[0_20px_50px_rgba(0,0,0,0.08)] rounded-t-[2.5rem] rounded-b-2xl aspect-[4/5] lg:aspect-[3/4]">
+                    <img src="wd2.jpeg" alt="Premium UPVC Interiors" class="w-full h-full object-cover rounded-t-[2rem] rounded-b-xl reveal visible">
+                </div>
+                
+                <!-- Trust Card -->
+                <div class="absolute bottom-10 -left-10 bg-white/95 backdrop-blur-md p-6 rounded-2xl shadow-xl border border-gray-100 max-w-[220px] hidden md:block">
+                    <div class="flex items-center gap-2 text-brand-gold mb-2">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="font-serif font-medium text-brand-dark">Premium Quality</p>
+                    <p class="text-xs text-brand-text mt-1">Trusted Everywhere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UPVC Material Guarantees -->
+    <section id="materials" class="py-24 bg-brand-dark text-white relative z-10 overflow-hidden">
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-gold/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-3xl md:text-5xl font-serif font-medium mb-4 text-white">The Sri Vidya Enterprises Standard</h2>
+                <p class="text-lg text-gray-400 font-light leading-relaxed">
+                    Our premium UPVC doors and modular interior solutions are engineered from the ground up to defy time, weather, and wear, ensuring lifelong elegance.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 reveal">
+                <div class="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
+                    <i class="fa-solid fa-droplet text-3xl text-brand-gold mb-4"></i>
+                    <h4 class="font-serif text-lg font-medium mb-2">100% Waterproof</h4>
+                    <p class="text-sm text-gray-400 font-light">Perfect for bathrooms and kitchens; entirely resistant to moisture and swelling.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
+                    <i class="fa-solid fa-bug-slash text-3xl text-brand-gold mb-4"></i>
+                    <h4 class="font-serif text-lg font-medium mb-2">Termite Proof</h4>
+                    <p class="text-sm text-gray-400 font-light">Advanced material composition guarantees permanent protection against pests.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
+                    <i class="fa-solid fa-fire-shield text-3xl text-brand-gold mb-4"></i>
+                    <h4 class="font-serif text-lg font-medium mb-2">Fire Retardant</h4>
+                    <p class="text-sm text-gray-400 font-light">Engineered to resist combustion, providing an essential layer of home safety.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
+                    <i class="fa-solid fa-paint-roller text-3xl text-brand-gold mb-4"></i>
+                    <h4 class="font-serif text-lg font-medium mb-2">No Paint Required</h4>
+                    <p class="text-sm text-gray-400 font-light">Maintenance-free surfaces that never fade, peel, or require repainting.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
+                    <i class="fa-solid fa-shield-halved text-3xl text-brand-gold mb-4"></i>
+                    <h4 class="font-serif text-lg font-medium mb-2">Zero Rust</h4>
+                    <p class="text-sm text-gray-400 font-light">Unlike traditional metal alternatives, our profiles remain permanently rust-free.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
+                    <i class="fa-solid fa-leaf text-3xl text-brand-gold mb-4"></i>
+                    <h4 class="font-serif text-lg font-medium mb-2">Eco-Friendly</h4>
+                    <p class="text-sm text-gray-400 font-light">Sustainable, recyclable materials that protect both your home and the environment.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
+                    <i class="fa-solid fa-hourglass-half text-3xl text-brand-gold mb-4"></i>
+                    <h4 class="font-serif text-lg font-medium mb-2">Lifelong Durability</h4>
+                    <p class="text-sm text-gray-400 font-light">Built with structural integrity to gracefully withstand decades of daily use.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
+                    <i class="fa-solid fa-gem text-3xl text-brand-gold mb-4"></i>
+                    <h4 class="font-serif text-lg font-medium mb-2">Premium Finish</h4>
+                    <p class="text-sm text-gray-400 font-light">Available in luxurious wood-grains and sleek matte textures to elevate your interiors.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collections (Upgraded Frosted Glass Doors & Click Actions) -->
+    <section id="products" class="py-32 bg-white relative z-10 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-20 reveal">
+                <h2 class="text-4xl md:text-5xl font-serif font-medium mb-4 text-brand-dark">Our Collections</h2>
+                <p class="text-lg text-brand-text font-light">Hover to slide open the frosted panels. <strong>Click to view the specific category in our gallery.</strong></p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Product 1: TV Units -->
+                <div class="product-card group reveal cursor-pointer" onclick="filterGallery('tv')">
+                    <div class="door-wrapper mb-6 shadow-md">
+                        <div class="door-left"></div>
+                        <div class="door-right"></div>
+                        <!-- Placeholder for Collection Image -->
+                        <img src="tv5.jpeg" class="product-inner-img w-full h-full object-cover" alt="Designer PVC Doors">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-2xl font-serif font-medium mb-3 text-brand-dark group-hover:text-brand-gold transition-colors">Premium TV UNITS</h3>
+                        <p class="text-brand-text font-light leading-relaxed mb-4 px-4 text-sm">Waterproof, termite-proof architectural doors, perfectly crafted.</p>
+                    </div>
+                </div>
+
+                <!-- Product 2: Kitchens -->
+                <div class="product-card group reveal cursor-pointer" style="transition-delay: 150ms;" onclick="filterGallery('kitchens')">
+                    <div class="door-wrapper mb-6 shadow-md">
+                        <div class="door-left"></div>
+                        <div class="door-right"></div>
+                        <!-- Placeholder for Collection Image -->
+                        <img src="k4.jpeg" class="product-inner-img w-full h-full object-cover" alt="UPVC Modular Kitchens">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-2xl font-serif font-medium mb-3 text-brand-dark group-hover:text-brand-gold transition-colors">Modular Kitchens</h3>
+                        <p class="text-brand-text font-light leading-relaxed mb-4 px-4 text-sm">Sleek, modern, and highly durable kitchen layouts built to withstand everyday use gracefully.</p>
+                    </div>
+                </div>
+
+                <!-- Product 3: Wardrobes -->
+                <div class="product-card group reveal cursor-pointer" style="transition-delay: 300ms;" onclick="filterGallery('wardrobes')">
+                    <div class="door-wrapper mb-6 shadow-md">
+                        <div class="door-left"></div>
+                        <div class="door-right"></div>
+                        <!-- Placeholder for Collection Image -->
+                        <img src="wd2.jpeg" class="product-inner-img w-full h-full object-cover" alt="Custom Cupboards">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-2xl font-serif font-medium mb-3 text-brand-dark group-hover:text-brand-gold transition-colors">Custom Wardrobes</h3>
+                        <p class="text-brand-text font-light leading-relaxed mb-4 px-4 text-sm">Bespoke sliding and hinge storage solutions designed to maximize space and elevate aesthetics.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CRISP & CLEAR GALLERY (With Filtering) -->
+    <section id="gallery" class="py-32 relative z-10 bg-brand-bg scroll-mt-24">
+        <div class="max-w-[90rem] mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-10 reveal">
+                <h2 class="text-4xl md:text-5xl font-serif font-medium mb-4 text-brand-dark">Project Gallery</h2>
+                <p class="text-lg text-brand-text font-light">Explore our craftsmanship in full detail. Click any image to view.</p>
+            </div>
+
+            <!-- Gallery Filter Navigation -->
+            <div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-16 reveal">
+                <button onclick="filterGallery('all')" id="btn-all" class="filter-btn px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-brand-dark text-white border border-brand-dark">All Projects</button>
+                <button onclick="filterGallery('tv')" id="btn-tv" class="filter-btn px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-white text-brand-dark border border-gray-200 hover:border-brand-gold hover:text-brand-gold">TV Units</button>
+                <button onclick="filterGallery('kitchens')" id="btn-kitchens" class="filter-btn px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-white text-brand-dark border border-gray-200 hover:border-brand-gold hover:text-brand-gold">Kitchens</button>
+                <button onclick="filterGallery('wardrobes')" id="btn-wardrobes" class="filter-btn px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-white text-brand-dark border border-gray-200 hover:border-brand-gold hover:text-brand-gold">Wardrobes</button>
+            </div>
+
+            <!-- Masonry Grid -->
+            <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16 reveal auto-rows-[250px]">
+                <!-- Javascript will inject images here -->
+            </div>
+
+            <div id="load-more-container" class="text-center reveal">
+                <button onclick="expandGallery()" class="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white border border-gray-200 text-brand-dark hover:border-brand-gold hover:text-brand-gold shadow-sm font-medium transition-all duration-300">
+                    Load More Projects
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trustable Verified Reviews -->
+    <section id="reviews" class="py-32 bg-white relative z-10 border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                <div class="inline-flex items-center justify-center gap-2 bg-brand-bg px-5 py-2 rounded-full shadow-sm border border-gray-200 mb-6 text-sm">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-4 h-4">
+                    <span class="font-medium text-brand-dark">4.8/5 Verified Rating</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-serif font-medium mb-6 text-brand-dark">What Our Clients Say</h2>
+                <p class="text-lg text-brand-text font-light">Real feedback from real homes we've transformed.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal">
+                <!-- Review Card 1 -->
+                <div class="bg-brand-bg p-8 rounded-[2rem] shadow-sm border border-gray-100 flex flex-col h-full hover:shadow-lg transition-shadow">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 text-blue-600 font-serif font-bold flex items-center justify-center text-xl">B</div>
+                        <div>
+                            <h4 class="font-medium text-brand-dark">Bangaru Upender</h4>
+                            <p class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Local Guide</p>
+                        </div>
+                    </div>
+                    <div class="flex text-brand-gold text-sm mb-4 gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-brand-text font-light leading-relaxed flex-grow italic">"My experience at Sri Vidya Enterprises was exceptional! The prompt management ensured a smooth experience. A perfect blend of quality products and excellent service."</p>
+                </div>
+
+                <!-- Review Card 2 -->
+                <div class="bg-brand-bg p-8 rounded-[2rem] shadow-sm border border-gray-100 flex flex-col h-full hover:shadow-lg transition-shadow">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-green-100 text-green-600 font-serif font-bold flex items-center justify-center text-xl">L</div>
+                        <div>
+                            <h4 class="font-medium text-brand-dark">Lakshmi V.</h4>
+                            <p class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Verified Client</p>
+                        </div>
+                    </div>
+                    <div class="flex text-brand-gold text-sm mb-4 gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+                    <p class="text-brand-text font-light leading-relaxed flex-grow italic">"Got our kitchen cabinets and wardrobes done by Sri Vidya Enterprises. Very reasonable price compared to others and very good workmanship. The finish is exactly what we wanted."</p>
+                </div>
+
+                <!-- Review Card 3 -->
+                <div class="bg-brand-bg p-8 rounded-[2rem] shadow-sm border border-gray-100 flex flex-col h-full hover:shadow-lg transition-shadow">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 text-purple-600 font-serif font-bold flex items-center justify-center text-xl">S</div>
+                        <div>
+                            <h4 class="font-medium text-brand-dark">Sankar</h4>
+                            <p class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Verified Client</p>
+                        </div>
+                    </div>
+                    <div class="flex text-brand-gold text-sm mb-4 gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-brand-text font-light leading-relaxed flex-grow italic">"Too good, very lowest price, 100% warranty Doors. One of the best manufacturers. Highly recommended for interior work, they delivered on time without any hassle."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clean & Trustable Contact Section -->
+    <section id="contact" class="py-32 bg-white relative z-10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-16 items-center reveal">
+            <div class="w-full lg:w-[45%]">
+                <h2 class="text-4xl md:text-5xl font-serif font-medium mb-6 text-brand-dark">Ready to upgrade your home?</h2>
+                <p class="text-brand-text font-light mb-10 text-lg">Contact us for a free quotation or visit our showroom to experience our premium materials in person.</p>
+                
+                <div class="space-y-8 bg-brand-bg p-8 rounded-3xl border border-gray-100">
+                    <div>
+                        <h4 class="text-xs font-semibold uppercase tracking-widest text-brand-text mb-2">Showroom Address</h4>
+                        <p class="text-lg text-brand-dark leading-relaxed">
+                            Rangoon Saheb Street ,NH Road, Bhavanipuram, Vijayawada 520012
+                        </p>
+                    </div>
+                    <hr class="border-gray-200">
+                    <div>
+                        <h4 class="text-xs font-semibold uppercase tracking-widest text-brand-text mb-2">Call Us Directly</h4>
+                        <a href="tel:+919848298777" class="font-serif text-3xl font-medium text-brand-dark hover:text-brand-gold transition-colors">+91 98482 98777</a>
+                    </div>
+                </div>
+
+                <a href="https://wa.me/919848298777" target="_blank" class="mt-8 inline-flex items-center justify-center w-full px-8 py-4 text-sm font-medium text-white bg-green-600 rounded-full hover:bg-green-700 transition-all shadow-md">
+                    <i class="fa-brands fa-whatsapp text-xl mr-3"></i> Chat on WhatsApp
+                </a>
+            </div>
+
+            <!-- Crisp Map -->
+            <div class="w-full lg:w-[55%] h-[500px] rounded-[2rem] overflow-hidden border border-gray-200 shadow-sm">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d956.2464597219814!2d80.5928010394714!3d16.52681255142058!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35fad275c978ff%3A0xfa0f750d419b4092!2sSri%20Vidya%20Enterprises%20A%20P%20%26%20T%20G!5e0!3m2!1sen!2sin!4v1782559915444!5m2!1sen!2sin" 
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classy Footer -->
+    <footer class="bg-brand-dark py-12 text-center text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center justify-center gap-3 text-2xl font-serif font-medium mb-4">
+                Sri Vidya Enterprises
+            </div>
+            <p class="text-sm text-gray-400 mb-6 font-light">Premium UPVC Interiors & Modular Solutions.</p>
+            <p class="text-xs text-gray-500 uppercase tracking-widest">
+                &copy; <span id="year"></span> Sri Vidya Enterprises. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX OVERLAY (For Gallery) -->
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md hidden flex-col items-center justify-center opacity-0 transition-opacity duration-300">
+        <div class="absolute top-0 w-full p-6 flex justify-between items-center z-[110]">
+            <div class="text-white/80 text-sm font-medium tracking-widest uppercase">
+                Image <span id="lightbox-counter">1</span>
+            </div>
+            <button onclick="closeLightbox()" class="text-white/80 hover:text-white text-3xl transition-all"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <button onclick="prevImage()" class="absolute left-6 text-white/60 hover:text-white text-4xl transition-all z-[110]"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="w-[90%] max-w-5xl max-h-[85vh] flex justify-center items-center">
+            <img id="lightbox-img" src="" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl" alt="Gallery View">
+        </div>
+        <button onclick="nextImage()" class="absolute right-6 text-white/60 hover:text-white text-4xl transition-all z-[110]"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+    <!-- JS Logic -->
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // 1. SCROLL REVEAL ANIMATIONS
+        const observeElements = () => {
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+            document.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
+        };
+        observeElements();
+
+        // 2. STRUCTURED CATEGORY GALLERY
+        // Replace these placeholder paths with your actual image paths
+        const imageDatabase = {
+            all: [
+                "wd5.jpeg", "wd6.jpeg", "wd7.jpeg", "wd8.jpeg", "wd9.jpeg", "tv2.jpeg", "tv3.jpeg", "tv1.jpeg", "tv4.jpeg", "tv8.jpeg","k1.jpeg", "k2.jpeg", "k3.jpeg", "k4.jpeg", "k5.jpeg", "k6.jpeg", "k7.jpeg", "k8.jpeg", "k9.jpeg", "k10.jpeg", "tv5.jpeg", "tv6.jpeg", "tv7.jpeg","wd1.jpeg", "wd2.jpeg", "wd3.jpeg", "wd4.jpeg"
+            ],
+            tv: [
+                "tv2.jpeg", "tv3.jpeg", "tv1.jpeg", "tv4.jpeg", "tv5.jpeg", "tv6.jpeg", "tv7.jpeg", "tv8.jpeg"
+            ],
+            kitchens: [
+                "k1.jpeg", "k2.jpeg", "k3.jpeg", "k4.jpeg", "k5.jpeg", "k6.jpeg", "k7.jpeg", "k8.jpeg", "k9.jpeg", "k10.jpeg"
+            ],
+            wardrobes: [
+                "wd1.jpeg", "wd2.jpeg", "wd3.jpeg", "wd4.jpeg", "wd5.jpeg", "wd6.jpeg", "wd7.jpeg", "wd8.jpeg", "wd9.jpeg", "wd10.jpeg", "wd11.jpeg", "wd12.jpeg", "wd13.jpeg","wd14.jpeg"            ]
+        };
+
+        let currentCategory = 'all';
+        let currentImages = imageDatabase[currentCategory];
+        let visibleCount = 8;
+        let currentLightboxIndex = 0;
+        const grid = document.getElementById('gallery-grid');
+
+        // Function to filter Gallery when a door card or button is clicked
+        function filterGallery(category) {
+            currentCategory = category;
+            currentImages = imageDatabase[category];
+            visibleCount = 8; // Reset visible count on new category
+            
+            // Update Active Button styling
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-dark', 'text-white', 'border-brand-dark');
+                btn.classList.add('bg-white', 'text-brand-dark', 'border-gray-200');
+            });
+            const activeBtn = document.getElementById(`btn-${category}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-white', 'text-brand-dark', 'border-gray-200');
+                activeBtn.classList.add('bg-brand-dark', 'text-white', 'border-brand-dark');
+            }
+
+            renderGallery();
+            
+            // Scroll down cleanly to the gallery section
+            document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Render clear, unblurred masonry
+        function renderGallery() {
+            grid.innerHTML = '';
+            
+            const imagesToShow = Math.min(visibleCount, currentImages.length);
+            
+            if (currentImages.length === 0) {
+                grid.innerHTML = '<p class="col-span-full text-center text-gray-400 py-10">More images coming soon.</p>';
+                document.getElementById('load-more-container').style.display = 'none';
+                return;
+            }
+
+            for (let i = 0; i < imagesToShow; i++) {
+                const url = currentImages[i];
+                const div = document.createElement('div');
+                
+                // Dynamic sizing for masonry look
+                let spanClasses = 'col-span-1 row-span-1'; 
+                if (i % 8 === 0) spanClasses = 'col-span-2 row-span-2 md:col-span-2'; 
+                else if (i % 8 === 5) spanClasses = 'col-span-2 row-span-1'; 
+                else if (i % 8 === 2) spanClasses = 'col-span-1 row-span-2'; 
+
+                div.className = `${spanClasses} rounded-2xl overflow-hidden cursor-pointer group relative bg-gray-200`;
+                div.onclick = () => openLightbox(i);
+                div.innerHTML = `
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex flex-col items-center justify-center">
+                        <div class="w-12 h-12 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white transform scale-50 group-hover:scale-100 transition-transform duration-300">
+                            <i class="fa-solid fa-expand"></i>
+                        </div>
+                    </div>
+                    <!-- Clear image with subtle zoom -->
+                    <img src="${url}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" loading="lazy">
+                `;
+                grid.appendChild(div);
+            }
+
+            // Manage Load More button visibility
+            if (visibleCount >= currentImages.length) {
+                document.getElementById('load-more-container').style.display = 'none';
+            } else {
+                document.getElementById('load-more-container').style.display = 'block';
+            }
+        }
+
+        function expandGallery() {
+            visibleCount += 8;
+            renderGallery();
+        }
+
+        // 3. LIGHTBOX LOGIC
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const counter = document.getElementById('lightbox-counter');
+
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            updateLightboxImage();
+            lightbox.classList.remove('hidden');
+            setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeLightbox() {
+            lightbox.classList.add('opacity-0');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                document.body.style.overflow = 'auto'; 
+            }, 300);
+        }
+
+        function nextImage() {
+            currentLightboxIndex = (currentLightboxIndex + 1) % currentImages.length;
+            updateLightboxImage();
+        }
+
+        function prevImage() {
+            currentLightboxIndex = (currentLightboxIndex - 1 + currentImages.length) % currentImages.length;
+            updateLightboxImage();
+        }
+
+        function updateLightboxImage() {
+            lightboxImg.style.opacity = 0;
+            setTimeout(() => {
+                lightboxImg.src = currentImages[currentLightboxIndex];
+                counter.innerText = `${currentLightboxIndex + 1} of ${currentImages.length}`;
+                lightboxImg.style.opacity = 1;
+            }, 150);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.classList.contains('hidden')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        });
+
+        // Initialize Gallery on page load
+        renderGallery();
+
+    </script>
+</body>
+</html>
